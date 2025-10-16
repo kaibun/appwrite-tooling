@@ -1,0 +1,19 @@
+{
+  "name": "@carto-chasse/appwrite-local",
+  "description": "Tooling to ease backing up and restoring a docker compose Appwrite stack",
+  "author": {
+    "name": "Jean-Denis Vauguet",
+    "email": "npm@kaibun.net"
+  },
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "up": "docker compose up -d --remove-orphans",
+    "up:recreate": "docker compose up -d --remove-orphans --force-recreate",
+    "down": "docker compose down",
+    "backup": "./scripts/backup.sh",
+    "bump": "./scripts/bump-appwrite.sh",
+    "restore": "./scripts/restore.sh",
+    "purge": "rm -rf ./backups/*"
+  }
+}
