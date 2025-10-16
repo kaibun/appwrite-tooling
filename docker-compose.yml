@@ -38,6 +38,7 @@ services:
     restart: unless-stopped
     networks:
       - appwrite
+      - runtimes
     labels:
       - traefik.enable=true
       - traefik.constraint-label-stack=appwrite
