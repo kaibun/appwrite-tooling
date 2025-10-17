@@ -5,6 +5,10 @@
 
 set -e
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+. "$SCRIPT_DIR/utils.sh"
+load_env
+
 if [ -z "$1" ]; then
   echo "Usage: $0 <appwrite-version> (e.g. 1.8.0-RC4)"
   exit 1

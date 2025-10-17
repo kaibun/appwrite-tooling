@@ -1,22 +1,16 @@
 #!/bin/bash
 set -e
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+. "$SCRIPT_DIR/utils.sh"
+load_env
+
 if [ -z "$1" ]; then
   echo "Usage: $0 <backup_dir>"
   exit 1
 fi
 
 BACKUP_DIR="$1"
-
-
-# Load environment variables from .env if present
-set -a
-[ -f .env ] && . .env
-set +a
-
-# Source utility functions
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-. "$SCRIPT_DIR/utils.sh"
 
 # Stop all containers (better safe than sorry)
 echo "Stopping all Appwrite containers for restore..."

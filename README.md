@@ -4,7 +4,19 @@
 
 ## Prerequisites
 
+### Software
+
 - [Docker](https://docker.io/)
+
+### .env configuration
+
+The `.env` file **must** include the following line to ensure Docker Compose & Appwrite use the correct namespace:
+
+```env
+COMPOSE_PROJECT_NAME=[name of the current, working directory]
+```
+
+This avoids container name conflicts and ensures all scripts use the same Compose project name.
 
 <details>
 <summary>Initial installation (one-time setup, has already been done)</summary>

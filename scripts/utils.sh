@@ -1,6 +1,18 @@
 #!/bin/bash
 # Utility functions for Appwrite backup/restore scripts
 
+# Load .env file and export variables
+load_env() {
+  local env_file="$(dirname "$0")/../.env"
+  if [ -f "$env_file" ]; then
+    set -a
+    # shellcheck disable=SC1090
+    . "$env_file"
+    set +a
+    export COMPOSE_PROJECT_NAME
+  fi
+}
+
 # Start all Appwrite services
 start_appwrite_services() {
   echo "[INFO] Starting all Appwrite services..."

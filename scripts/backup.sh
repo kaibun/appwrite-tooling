@@ -1,19 +1,12 @@
 #!/bin/bash
 set -e
 
-
-# Load environment variables from .env if present
-set -a
-[ -f .env ] && . .env
-set +a
-
-# Source utility functions
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 . "$SCRIPT_DIR/utils.sh"
+load_env
 
 BACKUP_DIR="./backups/$(date +%Y%m%d_%H%M%S)"
 mkdir -p "$BACKUP_DIR"
-
 
 # Find or start MariaDB container
 read MARIADB_CONTAINER MARIADB_CONTAINER_NAME < <(find_mariadb_container)
