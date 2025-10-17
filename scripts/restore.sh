@@ -93,6 +93,14 @@ for VOLUME in "${APPWRITE_VOLUMES[@]}"; do
   fi
 done
 
+# Restore docker-compose.yml
+if [ -f "$BACKUP_DIR/docker-compose.yml" ]; then
+  echo "Restoring docker-compose.yml..."
+  cp "$BACKUP_DIR/docker-compose.yml" docker-compose.yml
+else
+  echo "No docker-compose.yml found in backup, skipping."
+fi
+
 # Restore .env
 if [ -f "$BACKUP_DIR/.env" ]; then
   echo "Restoring .env..."

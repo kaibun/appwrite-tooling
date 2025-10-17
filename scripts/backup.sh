@@ -93,9 +93,14 @@ for VOLUME in "${APPWRITE_VOLUMES[@]}"; do
   fi
 done
 
-# Backup .env (si besoin)
+
+# Backup .env
 echo "Backup .env..."
 cp .env "$BACKUP_DIR/.env"
+
+# Backup docker-compose.yml
+echo "Backup docker-compose.yml..."
+cp docker-compose.yml "$BACKUP_DIR/docker-compose.yml"
 
 # Optionally restart containers after backup
 # echo "Restarting Appwrite stack..."
