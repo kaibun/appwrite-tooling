@@ -58,7 +58,8 @@ echo
 read -p "Apply these changes to $LOCAL_COMPOSE? [y/N] " CONFIRM
 if [[ "$CONFIRM" =~ ^[Yy]$ ]]; then
   mv "$TMP_NEW" "$LOCAL_COMPOSE"
-  echo "[OK] $LOCAL_COMPOSE updated."
+  echo "$VERSION" > .appwrite-version
+  echo "[OK] $LOCAL_COMPOSE updated. Version $VERSION saved to .appwrite-version."
   # Save image change log to CHANGELOG.md
   echo "# Docker Compose image bump to Appwrite $VERSION - $(date '+%Y-%m-%d %H:%M:%S')" >> CHANGELOG.md
   echo >> CHANGELOG.md

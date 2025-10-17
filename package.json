@@ -13,6 +13,8 @@
     "down": "docker compose down",
     "backup": "./scripts/backup.sh",
     "bump": "./scripts/bump-appwrite.sh",
+    "upgrade": "./scripts/upgrade.sh",
+    "migrate": "./scripts/migrate.sh",
     "restore": "./scripts/restore.sh",
     "purge": "rm -rf ./backups/*"
   }

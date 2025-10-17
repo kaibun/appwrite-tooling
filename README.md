@@ -35,6 +35,16 @@ Run `npm run down` (basically `docker compose down`) to shutdown all containers.
 
 ## Upgrading to a newer version
 
+In a nutshell, the process is:
+
+```sh
+npm run backup
+npm run bump [VERSION]
+npm run upgrade
+npm run migrate
+# git add / git commit, etc.
+```
+
 ### Manual backup before upgrade
 
 > https://appwrite.io/docs/advanced/self-hosting/production/backups
@@ -51,7 +61,7 @@ Dumps will be created in `./backups/YYYYMMDD_HHMMSS/`:
 - `uploads.tar.gz`, `functions.tar.gz`, etc. for Docker volume archives
 - `.env`
 
-### Upgrading the Appwrite dockerized stack
+### Bumping to a specific version
 
 > https://appwrite.io/docs/advanced/self-hosting/production/updates
 
@@ -115,7 +125,15 @@ You can update your `docker-compose.yml` based on the official file for your tar
 
 </details>
 
-## Restore from backup
+### Upgrading the docker images
+
+Run `npm run upgrade`.
+
+### Migrating the datasets
+
+Run `npm run migrate`.
+
+## Restoring from a backup
 
 To restore the database, Docker volumes, and .env from a backup directory:
 
