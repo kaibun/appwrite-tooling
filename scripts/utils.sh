@@ -1,7 +1,19 @@
 #!/bin/bash
 # Utility functions for Appwrite backup/restore scripts
 
-# Get Compose project name (default: current folder name)
+# Start all Appwrite services
+start_appwrite_services() {
+  echo "[INFO] Starting all Appwrite services..."
+  docker compose up -d --remove-orphans
+}
+
+# Stop all Appwrite services
+stop_appwrite_services() {
+  echo "[INFO] Stopping all Appwrite services..."
+  docker compose down
+}
+
+# Get Docker Compose project name (default: current working directory name)
 get_compose_project_name() {
   if [ -n "$COMPOSE_PROJECT_NAME" ]; then
     echo "$COMPOSE_PROJECT_NAME"
@@ -10,7 +22,7 @@ get_compose_project_name() {
   fi
 }
 
-# Get Compose volume prefix
+# Get Docker Compose volume prefix
 get_volume_prefix() {
   local project_name
   project_name="$(get_compose_project_name)"
@@ -30,6 +42,7 @@ get_mariadb_root_password() {
 
 # Find running MariaDB container (by partial name)
 # Outputs: id name (space-separated)
+# The id is more reliable than the name for further docker commands
 find_mariadb_container() {
   local id name
   id=$(docker ps --filter 'name=appwrite-mariadb' --format '{{.ID}}' | head -n1)
