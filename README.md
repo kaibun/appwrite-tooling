@@ -43,6 +43,8 @@ Run `npm run up` (basically `docker compose up -d --remove-orphans`).
 
 Run `npm run:recreate` if need be, eg. when modifying docker-compose.yml with settings that require destroying and recreating the containers (for instance, bound networks).
 
+Run `npm run fix-network` if your functions cannot access other services ("fetch failed" errors for instance). It will recreate all the containers.
+
 Run `npm run down` (basically `docker compose down`) to shutdown all containers.
 
 ## Upgrading to a newer version

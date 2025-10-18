@@ -10,6 +10,7 @@
   "scripts": {
     "up": "docker compose up -d --remove-orphans",
     "up:recreate": "docker compose up -d --remove-orphans --force-recreate",
+    "fix-network": "./scripts/fix-appwrite-network.sh",
     "down": "docker compose down",
     "backup": "./scripts/backup.sh",
     "bump": "./scripts/bump-appwrite.sh",
