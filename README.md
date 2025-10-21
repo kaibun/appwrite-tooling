@@ -162,11 +162,3 @@ This will restore:
 - The .env file
 
 You can adapt the script if you add or remove volumes in your stack.
-
----
-
-## TODO
-
-- Create @kaibun/appwrite-tooling as a copy of this project, no Carto Chasse left
-- Publish on npmjs.com, GitHub, etc.
-- Fork it to carto-chasse/appwrite-local and add specific/private config
