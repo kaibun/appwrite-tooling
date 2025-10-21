@@ -2,6 +2,8 @@
 
 # Appwrite: a local stack for agile development
 
+This repository holds a bunch of scripts & logic making it easy (easier?) to manage a [self-hosted](https://appwrite.io/docs/advanced/self-hosting) (_including locally on your host machine, of course_) [Docker-based Appwrite stack](https://github.com/appwrite/appwrite).
+
 ## Prerequisites
 
 ### Software
