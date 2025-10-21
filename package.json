@@ -5,7 +5,7 @@
     "name": "Jean-Denis Vauguet",
     "email": "npm@kaibun.net"
   },
-  "version": "0.4.1",
+  "version": "0.5.0",
   "scripts": {
     "up": "docker compose up -d --remove-orphans",
     "up:recreate": "docker compose up -d --remove-orphans --force-recreate",
