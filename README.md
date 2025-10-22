@@ -9,6 +9,9 @@ This repository holds a bunch of scripts & logic making it easy (easier?) to man
 ### Software
 
 - [Docker](https://docker.io/)
+- [yq](https://github.com/mikefarah/yq)
+- curl
+- diff
 
 ### .env configuration
 
