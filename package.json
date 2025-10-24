@@ -1,6 +1,6 @@
 {
   "name": "@kaibun/appwrite-tooling",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Tooling to ease backing up and restoring a docker compose Appwrite stack",
   "repository": "github:kaibun/appwrite-tooling",
   "homepage": "https://github.com/kaibun/appwrite-tooling",
