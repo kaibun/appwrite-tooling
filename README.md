@@ -65,6 +65,8 @@ It generated [./docker-compose.yml](https://github.com/appwrite/appwrite/blob/56
 
 ### 2. Configure the env
 
+This tooling aims to help you with managing concurrent Appwrite projects on the same host machine.
+
 You MUST either edit .env.project or create a .env.local file which **MUST define `COMPOSE_PROJECT_NAME` with a unique value**. It’s ["prepended along with the service name to the container’s name on startup"](https://docs.docker.com/compose/how-tos/environment-variables/envvars/#compose_project_name); basically it’s an ubiquitous prefix that effectively isolates your Docker Compose & Appwrite stacks (containers, volumes, networks…) from one another. **Not doing so may lead to data corruption/destruction**, for a Docker Compose project will erase another sharing the same name, in whole or in part.
 
 ```env
