@@ -1,2 +1,3 @@
 backups
 appwrite.config.json
+.env.local

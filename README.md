@@ -2,7 +2,9 @@
 
 # Appwrite: a local stack for agile development
 
-This repository holds a bunch of scripts & logic making it easy (easier?) to manage a [self-hosted](https://appwrite.io/docs/advanced/self-hosting) (_including locally on your host machine, of course_) [Docker-based Appwrite stack](https://github.com/appwrite/appwrite).
+This "template" repository holds a bunch of Unix scripts & logic making it easy (easier?) to manage a [self-hosted](https://appwrite.io/docs/advanced/self-hosting) (_including locally on your host machine, of course_) [Docker-based Appwrite stack](https://github.com/appwrite/appwrite).
+
+It’s based of the official setup which leverages Docker Compose to run all of Appwrite’s services.
 
 ## Prerequisites
 
@@ -13,20 +15,43 @@ This repository holds a bunch of scripts & logic making it easy (easier?) to man
 - curl
 - diff
 
-### .env configuration
+## Install
 
-The `.env` file **must** include the following line to ensure Docker Compose & Appwrite use the correct namespace:
+### 1. Get the code
 
-```env
-COMPOSE_PROJECT_NAME=[name of the current, working directory]
-```
+A nice setup is to [fork this repository](https://github.com/kaibun/appwrite-tooling/fork), then clone your fork into or as your project:
 
-This avoids container name conflicts and ensures all scripts use the same Compose project name.
-
-<details>
-<summary>Initial installation (one-time setup, has already been done)</summary>
+Let’s say I ran "cd ~/myproject" which may contain other folders already (e.g. frontend and mobile apps, configs…) and now wish to use Appwrite as my backend platform. I decide to use the ./appwrite folder to store it:
 
 ```sh
+git clone git@github.com:YOUR-ACCOUNT/appwrite-tooling.git appwrite
+cd appwrite
+git remote add upstream https://github.com/kaibun/appwrite-tooling.git
+```
+
+<details>
+<summary>Keeping your fork up to date</summary>
+
+If you have forked and cloned this template, you can fetch and merge the latest changes from the official repository ("upstream") at any time:
+
+```sh
+git fetch upstream
+git merge upstream/main
+# Or, if you would rather rebase your changes on top of upstream:
+# git rebase upstream/main
+```
+
+This allows you to benefit from new features and fixes while keeping your own customizations.
+
+If you encounter conflicts, resolve them manually, then commit the result.
+
+</details>
+
+<details>
+<summary>Initial installation (<em>one-time setup, has already been done; don’t do it again!</em>)</summary>
+
+```sh
+# 1.7.4 at the time…
 docker run -it --rm \
     --volume /var/run/docker.sock:/var/run/docker.sock \
     --volume "$(pwd)"/appwrite:/usr/src/code/appwrite:rw \
@@ -34,15 +59,31 @@ docker run -it --rm \
     appwrite/appwrite:1.7.4
 ```
 
-It generates ./docker-compose.yml.
-
-I added ./.env (https://appwrite.io/install/env).
+It generated [./docker-compose.yml](https://github.com/appwrite/appwrite/blob/568f6fd2747dbb7adfcf846944e642830acf1617/docker-compose.yml); [./.env](https://github.com/appwrite/appwrite/blob/568f6fd2747dbb7adfcf846944e642830acf1617/.env) was then added.
 
 </details>
 
-## Your job
+### 2. Configure the env
 
-Clone this repository.
+You MUST either edit .env.project or create a .env.local file which **MUST define `COMPOSE_PROJECT_NAME` with a unique value**. It’s ["prepended along with the service name to the container’s name on startup"](https://docs.docker.com/compose/how-tos/environment-variables/envvars/#compose_project_name); basically it’s an ubiquitous prefix that effectively isolates your Docker Compose & Appwrite stacks (containers, volumes, networks…) from one another. **Not doing so may lead to data corruption/destruction**, for a Docker Compose project will erase another sharing the same name, in whole or in part.
+
+```env
+# Don’t use a generic name such as "appwrite".
+# Use something like "my-unique-project".
+COMPOSE_PROJECT_NAME=myproject-backend
+```
+
+.env.project and .env.local are the perfect places for you to override values from .env. Values from the latter override the former’s, but the more sound reason for using .env.local is that it’s .gitignore-d by default.
+
+> It is best not to edit .env as it eases the version bumping process (no manual diff to manage).
+
+> Wondering why volumes and networks get prefixed, but not containers? Docker Compose v2 use short names to make things easier on the command line, but internally binds containers to the compose project. Using `docker inspect <containerId> | grep com.docker.compose.project` reveals the prefix set by `COMPOSE_PROJECT_NAME`.
+
+## Usage
+
+**_Follow [install instructions](#install) above, including the env configuration._**
+
+> appwrite-tooling currently only supports npm or direct scripts/\*.sh executions. Wish to use another tool? Head to https://github.com/kaibun/appwrite-tooling/issues/1
 
 Run `npm run up` (basically `docker compose up -d --remove-orphans`).
 
@@ -117,6 +158,8 @@ This command automates the process described below, updating all Docker image ta
 
 <details>
 <summary>How to choose the right Docker image tags for each Appwrite service?</summary>
+
+_You do not need to that manually; the `bump` command automates all of it. Information below left for reference and education._
 
 **General rule:**
 
