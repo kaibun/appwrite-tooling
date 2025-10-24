@@ -1,4 +1,6 @@
 #!/bin/bash
+# Usage: ./scripts/restore.sh <backup_dir>
+# Restores the Appwrite stack (database and volumes) from a backup directory
 set -e
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

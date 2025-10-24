@@ -1,4 +1,6 @@
 #!/bin/bash
+# Usage: ./scripts/backup.sh
+# Creates a full backup of the Appwrite stack (database and volumes)
 set -e
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

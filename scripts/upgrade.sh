@@ -2,7 +2,6 @@
 # Usage: ./scripts/upgrade.sh
 # Reads the Appwrite version from .appwrite-version and runs the upgrade container
 # @see https://appwrite.io/docs/advanced/self-hosting/production/updates#install-next-version
-
 set -e
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

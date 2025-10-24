@@ -4,9 +4,7 @@
 # @see https://appwrite.io/docs/advanced/self-hosting/production/updates#running-the-migration
 set -e
 
-# Source utility functions
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-
 . "$SCRIPT_DIR/utils.sh"
 load_env
 

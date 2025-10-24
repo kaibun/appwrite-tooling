@@ -1,8 +1,8 @@
 #!/bin/bash
 # Usage: ./scripts/bump-appwrite.sh <appwrite-version>
 # Example: ./scripts/bump-appwrite.sh 1.8.0-RC4
+# Bumps the Appwrite version in docker-compose.yml and downloads the new compose file
 # Requires: yq (https://github.com/mikefarah/yq), curl, diff
-
 set -e
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

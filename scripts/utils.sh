@@ -1,5 +1,6 @@
 #!/bin/bash
 # Utility functions for Appwrite backup/restore scripts
+set -e
 
 # Load required env vars
 load_env() {

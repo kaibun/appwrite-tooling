@@ -7,15 +7,15 @@
   },
   "version": "1.0.0",
   "scripts": {
-    "up": "docker compose up -d --remove-orphans",
-    "up:recreate": "docker compose up -d --remove-orphans --force-recreate",
+    "up": "./scripts/up.sh",
+    "up:recreate": "./scripts/up-recreate.sh",
     "fix-network": "./scripts/fix-appwrite-network.sh",
-    "down": "docker compose down",
+    "down": "./scripts/down.sh",
     "backup": "./scripts/backup.sh",
     "bump": "./scripts/bump-appwrite.sh",
     "upgrade": "./scripts/upgrade.sh",
     "migrate": "./scripts/migrate.sh",
     "restore": "./scripts/restore.sh",
-    "purge": "rm -rf ./backups/*"
+    "purge": "./scripts/purge.sh"
   }
 }

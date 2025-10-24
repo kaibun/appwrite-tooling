@@ -1,13 +1,16 @@
 #!/bin/bash
-# Patch docker-compose.yml to ensure appwrite service is attached to 'runtimes' network
 # Usage: ./scripts/fix-appwrite-network.sh
+# Patch docker-compose.yml to ensure appwrite service is attached to 'runtimes' network
 set -e
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+. "$SCRIPT_DIR/utils.sh"
+load_env
 
 COMPOSE_FILE="$(dirname "$0")/../docker-compose.yml"
 NETWORK_NAME="runtimes"
 SERVICE_NAME="appwrite"
 
-# Check if 'runtimes' is already in the appwrite service networks
 if yq e ".services.${SERVICE_NAME}.networks[]" "$COMPOSE_FILE" | grep -q "$NETWORK_NAME"; then
   echo "[INFO] Network '$NETWORK_NAME' already present in '$SERVICE_NAME' service."
 else
@@ -16,5 +19,5 @@ else
   echo "[INFO] Network '$NETWORK_NAME' added."
 fi
 
-# Recreate containers to apply network changes
+# Recreating containers is required to apply network changes
 npm run up:recreate
