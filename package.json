@@ -1,5 +1,5 @@
 {
-  "name": "@kaibun/appwrite-local",
+  "name": "@kaibun/appwrite-tooling",
   "description": "Tooling to ease backing up and restoring a docker compose Appwrite stack",
   "author": {
     "name": "Jean-Denis Vauguet",
